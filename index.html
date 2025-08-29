@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+   <meta charset="UTF-8">
+   <link rel="icon" type="image/png" href="assets/favicon-16x16.png">
+   <title>Tradutor Multilíngue</title>
+   <link rel="stylesheet" href="style.css">
+   <style>
+   </style>
+</head>
+
+<body>
+   <div id="conteudo">
+      <h1>🌐 Tradutor Multilíngue</h1>
+
+      <div class="form-group">
+         <label for="idiomaOrigem">De:</label>
+         <select id="idiomaOrigem">
+            <option value="auto">Detectar idioma</option>
+            <option value="pt">Português</option>
+            <option value="en">Inglês</option>
+            <option value="es">Espanhol</option>
+            <option value="fr">Francês</option>
+            <option value="de">Alemão</option>
+            <option value="it">Italiano</option>
+            <option value="ja">Japonês</option>
+            <option value="zh-CN">Chinês (Simplificado)</option>
+            <option value="ru">Russo</option>
+            <option value="ar">Árabe</option>
+            <option value="hi">Hindi</option>
+            <option value="la">Latim</option>
+            <option value="el">Grego (moderno)</option>
+            <option value="grc">Grego antigo</option>
+            <option value="sa">Sânscrito</option>
+            <option value="he">Hebraico</option>
+            <option value="tl">Tagalog</option>
+            <option value="sw">Suaíli</option>
+            <option value="vi">Vietnamita</option>
+            <option value="ko">Coreano</option>
+            <option value="pl">Polonês</option>
+            <option value="tr">Turco</option>
+            <option value="uk">Ucraniano</option>
+            <option value="nl">Holandês</option>
+            <option value="id">Indonésio</option>
+            <option value="fa">Persa</option>
+            <option value="ro">Romeno</option>
+            <option value="cy">Galês</option>
+            <option value="ga">Irlandês</option>
+            <option value="yi">Iídiche</option>
+            <option value="haw">Havaiano</option>
+            <option value="ceb">Cebuano</option>
+            <option value="am">Amárico</option>
+         </select>
+
+         <label for="idiomaDestino">Para:</label>
+         <select id="idiomaDestino">
+            <option value="pt">Português</option>
+            <option value="en">Inglês</option>
+            <option value="es">Espanhol</option>
+            <option value="fr">Francês</option>
+            <option value="de">Alemão</option>
+            <option value="it">Italiano</option>
+            <option value="ja">Japonês</option>
+            <option value="zh-CN">Chinês (Simplificado)</option>
+            <option value="ru">Russo</option>
+            <option value="ar">Árabe</option>
+            <option value="hi">Hindi</option>
+            <option value="la">Latim</option>
+            <option value="el">Grego (moderno)</option>
+            <option value="grc">Grego antigo</option>
+            <option value="sa">Sânscrito</option>
+            <option value="he">Hebraico</option>
+            <option value="tl">Tagalog</option>
+            <option value="sw">Suaíli</option>
+            <option value="vi">Vietnamita</option>
+            <option value="ko">Coreano</option>
+            <option value="pl">Polonês</option>
+            <option value="tr">Turco</option>
+            <option value="uk">Ucraniano</option>
+            <option value="nl">Holandês</option>
+            <option value="id">Indonésio</option>
+            <option value="fa">Persa</option>
+            <option value="ro">Romeno</option>
+            <option value="cy">Galês</option>
+            <option value="ga">Irlandês</option>
+            <option value="yi">Iídiche</option>
+            <option value="haw">Havaiano</option>
+            <option value="ceb">Cebuano</option>
+            <option value="am">Amárico</option>
+         </select>
+      </div>
+
+
+
+      <textarea id="textoOriginal" placeholder="Digite o texto..."></textarea><br>
+      <div class="botoes">
+         <button onclick="traduzir()">Traduzir</button>
+         <button onclick="falar()">🔈 Ouvir tradução</button>
+      </div>
+
+
+      <div id="resultado"></div>
+   </div>
+
+   <script>
+      let ultimaTraducao = "";
+
+      async function traduzir() {
+         const texto = document.getElementById("textoOriginal").value;
+         const origem = document.getElementById("idiomaOrigem").value;
+         const destino = document.getElementById("idiomaDestino").value;
+
+         const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=${origem}&tl=${destino}&dt=t&q=${encodeURIComponent(texto)}`;
+
+         try {
+            const resposta = await fetch(url);
+            const dados = await resposta.json();
+            const traducao = dados[0][0][0];
+            ultimaTraducao = traducao;
+            document.getElementById("resultado").innerText = "Tradução: " + traducao;
+         } catch (erro) {
+            document.getElementById("resultado").innerText = "Erro ao traduzir.";
+         }
+      }
+
+      function falar() {
+         if (!ultimaTraducao) return;
+
+         const fala = new SpeechSynthesisUtterance(ultimaTraducao);
+         fala.lang = document.getElementById("idiomaDestino").value;
+         speechSynthesis.speak(fala);
+      }
+
+      // Botão para centralizar o conteúdo
+      document.getElementById("organizarBtn").addEventListener("click", () => {
+         document.getElementById("conteudo").classList.toggle("centralizado");
+      });
+   </script>
+</body>
+
+</html>

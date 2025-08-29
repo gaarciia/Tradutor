@@ -1,0 +1,133 @@
+/* Reset básico */
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+}
+
+body {
+   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   background: linear-gradient(to right, #fdfbfb, #ebedee);
+   padding: 40px 20px;
+   text-align: center;
+   color: #333;
+}
+
+h1 {
+   font-size: 2.5em;
+   margin-bottom: 20px;
+   color: #2c3e50;
+}
+
+.form-group {
+   margin-bottom: 20px;
+   display: flex;
+   justify-content: center;
+   gap: 20px;
+   flex-wrap: wrap;
+}
+
+label {
+   font-weight: bold;
+   margin-right: 5px;
+}
+
+select {
+   padding: 10px;
+   font-size: 16px;
+   border-radius: 8px;
+   border: 1px solid #ccc;
+   background-color: #fff;
+   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+   min-width: 150px;
+}
+
+textarea {
+   width: 100%;
+   max-width: 700px;
+   height: 120px;
+   margin: 20px auto;
+   font-size: 16px;
+   padding: 15px;
+   border-radius: 10px;
+   border: 1px solid #ccc;
+   resize: none;
+   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+button {
+   padding: 12px 30px;
+   font-size: 16px;
+   cursor: pointer;
+   background-color: #3498db;
+   color: white;
+   border: none;
+   border-radius: 8px;
+   transition: background-color 0.3s ease;
+   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+   margin-top: 10px;
+}
+
+button:hover {
+   background-color: #2980b9;
+}
+
+#resultado {
+   margin-top: 30px;
+   font-size: 20px;
+   color: #2c3e50;
+   padding: 20px;
+   background-color: #ffffff;
+   border-radius: 10px;
+   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+   max-width: 700px;
+   margin-left: auto;
+   margin-right: auto;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+   h1 {
+      font-size: 2em;
+   }
+
+   .form-group {
+      flex-direction: column;
+      align-items: center;
+   }
+
+   select {
+      width: 80%;
+   }
+
+   textarea {
+      width: 90%;
+   }
+
+   button {
+      width: 80%;
+   }
+
+   #resultado {
+      width: 90%;
+   }
+}
+
+.botoes {
+   display: flex;
+   /* coloca os botões lado a lado */
+   gap: 10px;
+   /* espaçamento entre eles */
+   max-width: 400px;
+   /* largura total máxima desejada */
+   margin: auto;
+   /* centraliza o grupo */
+}
+
+.botoes button {
+   flex: 1;
+   /* cada botão ocupa a mesma fração do container */
+   box-sizing: border-box;
+   padding: 12px 0;
+   /* ajuste de padding vertical, se quiser */
+}
